@@ -10,6 +10,21 @@
 
 ### 🔗 [在线体验全部 28 个组件 →](https://ethancai330.github.io/social-design-shelf/)
 
+![组件总览](docs/overview.png)
+
+---
+
+## 动起来是这样
+
+| 磁吸按钮 | 放大 Dock | 横向手风琴 |
+|:---:|:---:|:---:|
+| ![磁吸按钮](docs/magnetic-button.gif) | ![放大 Dock](docs/magnification-dock.gif) | ![横向手风琴](docs/horizontal-accordion.gif) |
+| **形变对话框** | **玻璃底部抽屉** | **下拉展开摘要** |
+| ![形变对话框](docs/morphing-dialog.gif) | ![玻璃底部抽屉](docs/glass-sheet.gif) | ![下拉展开摘要](docs/pull-to-expand-summary.gif) |
+
+> 以上均为真实交互录屏，参数直接取自 `components/` 下的条目。
+> 图上帧数与实际动画帧一致，没有加速或补间。
+
 ---
 
 ## 它解决什么问题
