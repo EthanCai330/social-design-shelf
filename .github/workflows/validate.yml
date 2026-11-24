@@ -1,0 +1,49 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate entries
+        run: python validate.py
+
+      - name: Check INDEX.md is up to date
+        run: python build-index.py --check
+
+      - name: Check no personal files leaked
+        run: |
+          echo "检查是否有私人文件被提交..."
+          fail=0
+          for f in taste-profile.md; do
+            if git ls-files --error-unmatch "$f" > /dev/null 2>&1; then
+              echo "::error::$f 是私人文件，不应提交"
+              fail=1
+            fi
+          done
+          if git ls-files 'references/*' | grep -qv '.gitkeep'; then
+            echo "::error::references/ 含素材文件，有侵权风险，不应提交"
+            fail=1
+          fi
+          exit $fail
+
+      - name: Check no hardcoded absolute paths
+        run: |
+          echo "检查是否写死了个人路径..."
+          if grep -rn --include='*.md' -E '(C:\\\\Users|/Users/[a-z]+|~/Desktop|\.dsh/skills/)' \
+               SKILL.md CONTRIBUTING.md INDEX.md components/ 2>/dev/null | grep -v 'taste-profile'; then
+            echo "::error::发现写死的绝对路径，应改用相对于 skill 目录的相对路径"
+            exit 1
+          fi
+          echo "OK"

@@ -1,0 +1,33 @@
+# ── 个人文件（不随仓库发布）────────────────────────────
+taste-profile.md
+
+# ── 侵权风险：不要提交他人的截图/素材 ─────────────────
+# references/ 只应存放外链记录或你自己复刻录制的素材。
+# 直接提交 Dribbble / Mobbin / App Store 截图会构成侵权。
+references/*
+!references/.gitkeep
+
+# ── 系统与编辑器 ─────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# ── Python ───────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ── Node（构建 showcase 时）──────────────────────────
+node_modules/
+dist/
+.pnpm-store/
+
+# ── 本地验证产物 ─────────────────────────────────────
+*.log
+test-result.json
+shot-*.png
+hajimi-review.md
