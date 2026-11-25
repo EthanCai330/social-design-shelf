@@ -1,7 +1,7 @@
 ---
 id: magnetic-button
 title: "磁吸按钮 Magnetic Button"
-category: motion
+category: micro
 styles: [noir, quiet]
 input: pointer
 viewport: both

@@ -1,7 +1,7 @@
 ---
 id: click-spark
 title: "点击火花 Click Spark"
-category: motion
+category: micro
 styles: [noir]
 input: both
 viewport: both

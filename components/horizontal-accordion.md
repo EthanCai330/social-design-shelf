@@ -1,7 +1,7 @@
 ---
 id: horizontal-accordion
 title: "横向手风琴 Horizontal Accordion"
-category: expand
+category: structure
 styles: [swiss, oriental]
 input: both
 viewport: both

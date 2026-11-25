@@ -1,7 +1,7 @@
 ---
 id: staggered-list-reveal
 title: "错峰入场 Staggered List Reveal"
-category: motion
+category: effect
 styles: [quiet]
 input: none
 viewport: both

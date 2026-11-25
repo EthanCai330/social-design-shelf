@@ -1,7 +1,7 @@
 ---
 id: expandable-avatar-group
 title: "可展开头像组 Expandable Avatar Group"
-category: expand
+category: structure
 styles: [quiet]
 input: both
 viewport: mobile

@@ -1,7 +1,7 @@
 ---
 id: progressive-blur-header
 title: "渐进模糊头部 Progressive Blur Header"
-category: gesture
+category: structure
 styles: [quiet, glass]
 input: touch
 viewport: mobile

@@ -1,7 +1,7 @@
 ---
 id: image-trail
 title: "图片拖尾 Image Trail"
-category: motion
+category: effect
 styles: [noir]
 input: pointer
 viewport: desktop

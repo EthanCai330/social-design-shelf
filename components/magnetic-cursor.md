@@ -1,7 +1,7 @@
 ---
 id: magnetic-cursor
 title: "磁性拖拽 Magnetic Cursor Drag"
-category: gesture
+category: structure
 styles: [noir]
 input: pointer
 viewport: desktop

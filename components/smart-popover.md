@@ -1,7 +1,7 @@
 ---
 id: smart-popover
 title: "智能浮层 Smart Popover"
-category: depth
+category: structure
 styles: [glass]
 input: both
 viewport: both

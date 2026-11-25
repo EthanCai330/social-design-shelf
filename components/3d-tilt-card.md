@@ -1,7 +1,7 @@
 ---
 id: 3d-tilt-card
 title: "3D 倾斜卡片 3D Tilt Card"
-category: depth
+category: effect
 styles: [noir, fluid]
 input: pointer
 viewport: desktop

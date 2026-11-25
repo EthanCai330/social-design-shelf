@@ -1,7 +1,7 @@
 ---
 id: expandable-card
 title: "可展开卡片 Expandable Card"
-category: expand
+category: structure
 styles: [quiet]
 input: both
 viewport: mobile

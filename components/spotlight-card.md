@@ -1,7 +1,7 @@
 ---
 id: spotlight-card
 title: "Spotlight 光追卡片 Spotlight Card"
-category: depth
+category: effect
 styles: [noir]
 input: pointer
 viewport: both

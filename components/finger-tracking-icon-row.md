@@ -1,7 +1,7 @@
 ---
 id: finger-tracking-icon-row
 title: "跟手放大图标排 Finger-Tracking Icon Row"
-category: gesture
+category: structure
 styles: [quiet]
 input: touch
 viewport: mobile

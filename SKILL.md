@@ -45,7 +45,7 @@ design-collection/
 ---
 id: magnetic-button          # 必须等于文件名（不含 .md）
 title: "磁吸按钮 Magnetic Button"
-category: motion             # 单选，决定 INDEX 分组
+category: micro              # 单选，决定 INDEX 分组
 styles: [noir, quiet]        # 多选，只作标签
 input: pointer               # pointer | touch | both | none
 viewport: mobile             # mobile | desktop | both
@@ -55,13 +55,35 @@ status: verified             # draft | verified
 
 **`category` 与 `styles` 是两个独立维度，不要混用：**
 
-| category | 含义 | 判定依据 |
+分类遵循 **「语义优先」（semantics first）** 原则——按**作用对象**分类，而不是按技术实现方式。
+这个原则来自 ReactBits（215+ 组件库）的组织方式。
+
+| category | 含义 | 判定问题 |
 |---|---|---|
-| `motion` | 动效交互 | 核心是元素自身的过渡/形变/反馈 |
-| `depth` | 玻璃与深度 | 核心是层级、模糊、3D、空间关系 |
-| `expand` | 展开与收纳 | 核心是内容的显露与收起 |
-| `data` | 数据与反馈 | 核心是数值、进度、加载的呈现 |
-| `gesture` | 滚动与手势 | 核心由滚动或手指驱动 |
+| `text` | 文字动效 | **作用在文字上**吗？（逐字入场、扫光、乱码） |
+| `effect` | 动效效果 | 是**效果本身**吗？（光标、拖尾、悬停、入场） |
+| `micro` | 微小交互 | 是**小而精的交互件**吗？（开关、按钮、指示器、校验反馈） |
+| `structure` | 结构组件 | 有**结构或布局**吗？（导航、抽屉、浮层、列表、手势容器） |
+| `surface` | 背景与材质 | 作用在**整个面板或背景**上吗？（边框、玻璃、极光） |
+| `data` | 数据呈现 | 展示**数值、进度、加载**吗？ |
+| `screen` | 整页与氛围 | 是**整页或整体视觉**吗？（放 `screens/` 目录） |
+
+**判定顺序**（取第一个匹配的）：
+
+1. 作用对象是**文字**？→ `text`
+2. 作用对象是**背景/边框/材质**？→ `surface`
+3. 是**小而精**的交互件（可独立点击/切换）？→ `micro`
+4. 展示**数据**？→ `data`
+5. 有**结构或布局**（包含多个子元素、有开合/拖拽）？→ `structure`
+6. 其余**效果本身** → `effect`
+
+**反例**（容易分错的）：
+
+- 「磁吸按钮」→ `micro`（是小交互件），不是 `effect`
+- 「3D 倾斜卡片」→ `effect`（是悬停效果），不是 `structure`
+- 「形变对话框」→ `structure`（有布局结构），不是 `effect`
+- 「文字流光」→ `text`，不是 `effect`——它只作用于字形
+- 「极光背景」→ `surface`（作用在背景），不是 `effect`
 
 `styles` 取值：`quiet` 静谧极简 · `noir` 暗黑奢华 · `glass` 玻璃拟态 · `swiss` 瑞士排版 · `oriental` 东方留白 · `fluid` 流体渐变
 

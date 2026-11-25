@@ -1,7 +1,7 @@
 ---
 id: chromatic-refraction
 title: "色散折射 Chromatic Refraction"
-category: depth
+category: surface
 styles: [glass, fluid]
 input: pointer
 viewport: desktop

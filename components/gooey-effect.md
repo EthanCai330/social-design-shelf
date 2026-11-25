@@ -1,7 +1,7 @@
 ---
 id: gooey-effect
 title: "黏性融合 Gooey Effect"
-category: motion
+category: effect
 styles: [quiet, fluid]
 input: both
 viewport: mobile

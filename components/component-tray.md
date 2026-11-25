@@ -1,7 +1,7 @@
 ---
 id: component-tray
 title: "组件托盘 Component Tray"
-category: expand
+category: structure
 styles: [quiet, glass]
 input: both
 viewport: mobile

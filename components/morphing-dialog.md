@@ -1,7 +1,7 @@
 ---
 id: morphing-dialog
 title: "形变对话框 Morphing Dialog"
-category: depth
+category: structure
 styles: [glass, quiet]
 input: both
 viewport: mobile

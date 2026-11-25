@@ -1,7 +1,7 @@
 ---
 id: rotating-text
 title: "轮换文字 Rotating Text"
-category: motion
+category: text
 styles: [swiss, oriental]
 input: none
 viewport: both

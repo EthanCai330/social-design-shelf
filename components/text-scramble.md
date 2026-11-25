@@ -1,7 +1,7 @@
 ---
 id: text-scramble
 title: "乱码解码 Text Scramble"
-category: motion
+category: text
 styles: [swiss, noir]
 input: none
 viewport: both

@@ -1,7 +1,7 @@
 ---
 id: animated-segmented-control
 title: "动效分段控制器 Animated Segmented Control"
-category: motion
+category: micro
 styles: [quiet]
 input: both
 viewport: mobile

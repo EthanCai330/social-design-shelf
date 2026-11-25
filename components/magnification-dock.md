@@ -1,7 +1,7 @@
 ---
 id: magnification-dock
 title: "放大 Dock Magnification Dock"
-category: motion
+category: effect
 styles: [glass]
 input: pointer
 viewport: mobile

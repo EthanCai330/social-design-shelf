@@ -1,7 +1,7 @@
 ---
 id: glass-sheet
 title: "玻璃底部抽屉 Glass Sheet"
-category: depth
+category: structure
 styles: [glass]
 input: touch
 viewport: mobile

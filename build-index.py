@@ -21,15 +21,15 @@ COMP = ROOT / 'components'
 SCREENS = ROOT / 'screens'
 
 CATEGORY_LABEL = {
-    'motion':  ('动效交互', 'Motion'),
-    'depth':   ('玻璃与深度', 'Glass & Depth'),
-    'expand':  ('展开与收纳', 'Expand & Reveal'),
-    'data':    ('数据与反馈', 'Data & Feedback'),
-    'gesture': ('滚动与手势', 'Scroll & Gesture'),
-    'surface': ('材质与边框', 'Surface & Border'),
-    'screen':  ('整页与氛围', 'Screen & Ambience'),
+    'text':      ('文字动效', 'Text Animations'),
+    'effect':    ('动效效果', 'Animations'),
+    'micro':     ('微小交互', 'Micro'),
+    'structure': ('结构组件', 'Components'),
+    'surface':   ('背景与材质', 'Backgrounds & Surface'),
+    'data':      ('数据呈现', 'Data Display'),
+    'screen':    ('整页与氛围', 'Screens'),
 }
-CATEGORY_ORDER = ['motion', 'depth', 'expand', 'data', 'gesture', 'surface', 'screen']
+CATEGORY_ORDER = ['text', 'effect', 'micro', 'structure', 'surface', 'data', 'screen']
 
 STYLE_LABEL = {
     'quiet':    ('静谧极简', 'Quiet Minimal', '#FAF9F7', '删分割线，只靠留白分层'),

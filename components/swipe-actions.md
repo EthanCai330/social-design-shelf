@@ -1,7 +1,7 @@
 ---
 id: swipe-actions
 title: "滑动操作 Swipe Actions"
-category: gesture
+category: structure
 styles: [quiet]
 input: touch
 viewport: mobile

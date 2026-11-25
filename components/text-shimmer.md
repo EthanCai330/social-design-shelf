@@ -1,7 +1,7 @@
 ---
 id: text-shimmer
 title: "文字流光 Text Shimmer"
-category: motion
+category: text
 styles: [noir, fluid]
 input: none
 viewport: both

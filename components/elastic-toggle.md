@@ -1,7 +1,7 @@
 ---
 id: elastic-toggle
 title: "弹力开关 Elastic Toggle"
-category: motion
+category: micro
 styles: [quiet]
 input: touch
 viewport: mobile

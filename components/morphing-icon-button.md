@@ -1,7 +1,7 @@
 ---
 id: morphing-icon-button
 title: "形变图标按钮 Morphing Icon Button"
-category: motion
+category: micro
 styles: [quiet]
 input: both
 viewport: both

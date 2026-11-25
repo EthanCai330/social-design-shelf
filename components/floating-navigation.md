@@ -1,7 +1,7 @@
 ---
 id: floating-navigation
 title: "悬浮导航 Floating Navigation"
-category: motion
+category: structure
 styles: [glass]
 input: both
 viewport: mobile

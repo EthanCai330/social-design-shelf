@@ -1,7 +1,7 @@
 ---
 id: expandable-toolbar
 title: "可展开工具栏 Expandable Toolbar"
-category: motion
+category: structure
 styles: [glass]
 input: both
 viewport: mobile

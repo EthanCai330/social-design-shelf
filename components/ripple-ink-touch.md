@@ -1,7 +1,7 @@
 ---
 id: ripple-ink-touch
 title: "墨晕触摸反馈 Ripple / Ink Touch"
-category: motion
+category: micro
 styles: [oriental, quiet]
 input: touch
 viewport: mobile

@@ -1,7 +1,7 @@
 ---
 id: error-shake
 title: "错误抖动 Error Shake"
-category: motion
+category: micro
 styles: [quiet]
 input: both
 viewport: both

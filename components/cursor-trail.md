@@ -1,7 +1,7 @@
 ---
 id: cursor-trail
 title: "光标拖尾 Cursor Trail"
-category: motion
+category: effect
 styles: [noir, fluid]
 input: pointer
 viewport: desktop

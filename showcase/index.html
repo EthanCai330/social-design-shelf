@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 
@@ -1969,24 +1969,24 @@ def(28,'形变图标按钮','静谧极简','120px',function(stage){
 
 // 分类元数据：与 components/*.md 的 frontmatter 保持一致
 const CATEGORY = {
-  1:'motion', 2:'motion', 3:'motion', 4:'motion',
-  5:'motion', 6:'motion', 7:'motion', 8:'depth',
-  9:'depth', 10:'depth', 11:'depth', 12:'depth',
-  13:'gesture', 14:'expand', 15:'expand', 16:'expand',
-  17:'expand', 18:'gesture', 19:'expand', 20:'gesture',
+  1:'micro', 2:'effect', 3:'micro', 4:'structure',
+  5:'structure', 6:'micro', 7:'micro', 8:'structure',
+  9:'structure', 10:'structure', 11:'effect', 12:'effect',
+  13:'structure', 14:'structure', 15:'structure', 16:'structure',
+  17:'structure', 18:'structure', 19:'structure', 20:'structure',
   21:'data', 22:'data', 23:'data', 24:'data',
-  25:'gesture', 26:'motion', 27:'motion', 28:'motion',
+  25:'structure', 26:'text', 27:'effect', 28:'micro',
   41:'surface', 42:'surface', 43:'surface', 44:'surface',
   45:'surface', 46:'surface', 47:'surface', 48:'surface',
-  49:'motion', 50:'motion', 51:'motion',
-  52:'motion', 53:'motion', 54:'motion',
-  55:'motion', 56:'motion', 57:'motion',
+  49:'effect', 50:'text', 51:'effect', 52:'micro',
+  53:'micro', 54:'text', 55:'effect', 56:'micro',
+  57:'effect',
 };
 const CAT_LABEL = {
-  motion:'动效交互', depth:'玻璃与深度', expand:'展开与收纳',
-  data:'数据与反馈', gesture:'滚动与手势', surface:'材质与边框',
+  text:'文字动效', effect:'动效效果', micro:'微小交互',
+  structure:'结构组件', surface:'背景与材质', data:'数据呈现',
 };
-const CAT_ORDER = ['motion','depth','expand','data','gesture','surface'];
+const CAT_ORDER = ['text','effect','micro','structure','surface','data'];
 
 const grid = $('#grid');
 const state = { cat: 'all', q: '' };
@@ -4107,8 +4107,6 @@ def(51,'黏性融合 Gooey','液态 / SVG 滤镜','',function(stage){
   return function() { cancelAnimationFrame(rafId); };
 });
 
-buildFilterBar();
-
 /* ===== 以下为补充组件（反馈态 / 文字动效 / 指针交互）===== */
 /* =========================================================
    52. 成功勾选 Success Check
@@ -4436,6 +4434,8 @@ def(57,'图片拖尾','暗黑奢华','160px',function(stage){
   stage.addEventListener('pointerleave',()=>{ lastX=null; lastY=null; });
 });
 
+/* 必须等所有 def() 注册完成后才能构建筛选栏，否则计数会少 */
+buildFilterBar();
 render();
 
 </script>

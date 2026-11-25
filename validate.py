@@ -18,7 +18,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 COMP = ROOT / 'components'
 SCREENS = ROOT / 'screens'
 
-VALID_CATEGORIES = {'motion', 'depth', 'expand', 'data', 'gesture', 'surface', 'screen'}
+VALID_CATEGORIES = {'text', 'effect', 'micro', 'structure', 'surface', 'data', 'screen'}
 VALID_STYLES = {'quiet', 'noir', 'glass', 'swiss', 'oriental', 'fluid'}
 VALID_INPUT = {'pointer', 'touch', 'both', 'none'}
 VALID_VIEWPORT = {'mobile', 'desktop', 'both'}

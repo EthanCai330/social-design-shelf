@@ -1,7 +1,7 @@
 ---
 id: success-check
 title: "成功勾选 Success Check"
-category: motion
+category: micro
 styles: [quiet]
 input: none
 viewport: both

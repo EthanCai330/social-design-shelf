@@ -1,7 +1,7 @@
 ---
 id: infinite-marquee
 title: "无限滚动 Infinite Marquee"
-category: motion
+category: effect
 styles: [swiss]
 input: none
 viewport: both

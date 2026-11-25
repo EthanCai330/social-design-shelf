@@ -1,7 +1,7 @@
 ---
 id: pull-to-expand-summary
 title: "下拉展开摘要 Pull-To-Expand Summary"
-category: expand
+category: structure
 styles: [glass, quiet]
 input: touch
 viewport: mobile
