@@ -18,6 +18,7 @@ except Exception:
 
 ROOT = pathlib.Path(__file__).resolve().parent
 COMP = ROOT / 'components'
+SCREENS = ROOT / 'screens'
 
 CATEGORY_LABEL = {
     'motion':  ('动效交互', 'Motion'),
@@ -25,8 +26,10 @@ CATEGORY_LABEL = {
     'expand':  ('展开与收纳', 'Expand & Reveal'),
     'data':    ('数据与反馈', 'Data & Feedback'),
     'gesture': ('滚动与手势', 'Scroll & Gesture'),
+    'surface': ('材质与边框', 'Surface & Border'),
+    'screen':  ('整页与氛围', 'Screen & Ambience'),
 }
-CATEGORY_ORDER = ['motion', 'depth', 'expand', 'data', 'gesture']
+CATEGORY_ORDER = ['motion', 'depth', 'expand', 'data', 'gesture', 'surface', 'screen']
 
 STYLE_LABEL = {
     'quiet':    ('静谧极简', 'Quiet Minimal', '#FAF9F7', '删分割线，只靠留白分层'),
@@ -84,7 +87,7 @@ def one_liner(text):
 
 def collect():
     entries, problems = [], []
-    for p in sorted(COMP.glob('*.md')):
+    for p in sorted(COMP.glob('*.md')) + sorted(SCREENS.glob('*.md')):
         if p.name.startswith('_'):
             continue
         text = p.read_text(encoding='utf-8')
@@ -142,7 +145,8 @@ def render(entries):
             styles = ' '.join(f'`{s}`' for s in e['fm'].get('styles', []))
             dev = e['fm'].get('input', '')
             desc = f' — {e["desc"]}' if e['desc'] else ''
-            out.append(f'- [{e["fm"]["title"]}](components/{e["file"]}){desc}  ')
+            sub = f'components/{e["file"]}' if e['fm']['category'] != 'screen' else f'screens/{e["file"]}'
+            out.append(f'- [{e["fm"]["title"]}]({sub}){desc}  ')
             out.append(f'  <sub>{styles} · 输入 `{dev}`</sub>')
         out.append('')
 

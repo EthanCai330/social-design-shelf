@@ -5,16 +5,20 @@
 >
 > 分类（category）决定分组，视觉风格（styles）只作标签——两者正交。
 
-**统计**：28 个条目
+**统计**：41 个条目
 
-**按输入方式**：`both` 12 · `touch` 7 · `pointer` 5 · `none` 4
+**按输入方式**：`both` 14 · `none` 13 · `pointer` 7 · `touch` 7
 
-**按视口**：`mobile` 16 · `both` 10 · `desktop` 2
+**按视口**：`both` 19 · `mobile` 17 · `desktop` 5
 
 ---
 
 ## 动效交互 Motion
 
+- [乱码解码 Text Scramble](components/text-scramble.md) — 锁定节奏不要均匀死板  
+  <sub>`swiss` `noir` · 输入 `none`</sub>
+- [光标拖尾 Cursor Trail](components/cursor-trail.md) — 不要在内容密集的页面用  
+  <sub>`noir` `fluid` · 输入 `pointer`</sub>
 - [动效分段控制器 Animated Segmented Control](components/animated-segmented-control.md) — 宽度形变是灵魂，没有它就像低端 tab  
   <sub>`quiet` · 输入 `both`</sub>
 - [可展开工具栏 Expandable Toolbar](components/expandable-toolbar.md) — 图标必须"依次"滑出，一起出现就没有节奏感  
@@ -35,6 +39,8 @@
   <sub>`swiss` `oriental` · 输入 `none`</sub>
 - [错峰入场 Staggered List Reveal](components/staggered-list-reveal.md) — 错峰超过 6 张用户就会等  
   <sub>`quiet` · 输入 `none`</sub>
+- [黏性融合 Gooey Effect](components/gooey-effect.md) — `feColorMatrix` 的阈值是灵魂  
+  <sub>`quiet` `fluid` · 输入 `both`</sub>
 
 ## 玻璃与深度 Glass & Depth
 
@@ -48,6 +54,8 @@
   <sub>`glass` · 输入 `both`</sub>
 - [玻璃底部抽屉 Glass Sheet](components/glass-sheet.md) — "延迟 120ms 隐藏"是防闪白的关键，很多人漏了  
   <sub>`glass` · 输入 `touch`</sub>
+- [色散折射 Chromatic Refraction](components/chromatic-refraction.md) — 背景必须真有内容  
+  <sub>`glass` `fluid` · 输入 `pointer`</sub>
 
 ## 展开与收纳 Expand & Reveal
 
@@ -83,6 +91,30 @@
   <sub>`noir` · 输入 `pointer`</sub>
 - [跟手放大图标排 Finger-Tracking Icon Row](components/finger-tracking-icon-row.md) — 松手后所有图标必须归位，只有选中的保留轻微放大  
   <sub>`quiet` · 输入 `touch`</sub>
+
+## 材质与边框 Surface & Border
+
+- [多色渐变流光边框 Multi-color Gradient Shimmer Border](components/gradient-shimmer-border.md) — 色相跨度不要超过 4 段  
+  <sub>`fluid` `glass` · 输入 `none`</sub>
+- [局部霓虹发光边缘 Partial Neon Edge](components/partial-neon-edge.md) — 不要均匀点亮整圈  
+  <sub>`noir` · 输入 `none`</sub>
+- [新拟态 Neumorphism](components/neumorphism.md) — 重要按钮不要只用新拟态，必须补文字或描边  
+  <sub>`quiet` · 输入 `both`</sub>
+- [星云流光边框 Nebula Flow Border](components/nebula-flow-border.md) — 必须有 blur  
+  <sub>`fluid` `noir` · 输入 `none`</sub>
+- [极光背景 Aurora](components/aurora-background.md) — blur 值不要低于 60px  
+  <sub>`fluid` `noir` · 输入 `none`</sub>
+- [毛玻璃 Glassmorphism](components/glassmorphism.md) — 不要用 `opacity` 实现  
+  <sub>`glass` · 输入 `none`</sub>
+- [淡出透明 + 轻微发光 Fade-to-Transparent Glow Edge](components/fade-to-transparent-glow-edge.md) — 不要用 `border: 1px solid` 直接做  
+  <sub>`quiet` `glass` · 输入 `none`</sub>
+- [粒子流光边框 + 消散至虚空 Particle Shimmer Border](components/particle-shimmer-border.md) — 周期必须各不相同  
+  <sub>`noir` `fluid` · 输入 `none`</sub>
+
+## 整页与氛围 Screen & Ambience
+
+- [AI 研究海报 · 新瑞士生成艺术 AI Research Poster](screens/ai-research-poster.md) — 不要让图形抢过排版  
+  <sub>`swiss` `fluid` · 输入 `none`</sub>
 
 ---
 

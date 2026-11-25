@@ -24,6 +24,44 @@ status: verified
 - 描边 `1px rgba(255,255,255,0.08)`
 - 光斑：`rgba(120,160,255,0.16)` → transparent
 
+## 变体记录
+
+### 变体 B：卡片内聚光 · 边缘收敛（2026-11-25 收录自用户提示词）
+
+基准方案是"光斑跟随光标 + 描边在光标处高亮"。
+
+用户提示词强调的要点是：**光晕必须限制在面板内，中心微亮、边缘衰减**。
+
+```css
+/* 变体 B：径向渐变光晕，强制裁切在面板内 */
+.spotlight-panel {
+  position: relative;
+  overflow: hidden;                    /* 关键：裁切光晕 */
+  background: #131315;
+}
+.spotlight-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    260px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(110, 150, 255, 0.14) 0%,
+    rgba(110, 150, 255, 0.05) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+```
+
+差异点：
+- 本变体**只做光晕**，不做描边高亮弧线（更简洁）
+- 强调 `overflow: hidden` —— 没有它，光晕会溢出卡片边界
+- 中心 → 边缘用**三段衰减**（0% / 45% / 70%），比两段更柔和
+
+**取舍**：基准版的描边高亮更精致但实现更复杂；变体 B 更轻量，适合大面积面板。
+
+
 ## 降级
 `prefers-reduced-motion`：光斑固定居中，不跟随光标。
 触屏：改为按压缩放 0.98 加一层静态内发光。

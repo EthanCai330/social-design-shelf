@@ -32,6 +32,43 @@ status: verified
 - `prefers-reduced-motion`：取消涟漪扩散，只保留按下时的 8% 底色反馈
 - 键盘操作：用 `:focus-visible` 的描边代替涟漪
 
+## 变体记录
+
+### 变体 B：固定蓝色波纹 · 大缩放（2026-11-25 收录自用户提示词）
+
+基准方案是"波纹颜色跟随文字色 + 扩张到覆盖元素"。
+
+用户另提供一组更"水波"的参数：
+
+| 参数 | 基准 | 变体 B |
+|---|---|---|
+| 颜色 | 跟随 `currentColor` | **固定浅蓝** `rgba(120, 180, 255, .45)` |
+| 动画 | 半径 0 → 覆盖元素 | **`scale: 0 → 4`** |
+| 透明 | `12% → 0` | **`1 → 0`** |
+| 时长 | `500ms` | **`600ms`** |
+
+```css
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  width: 100%; height: 100%;
+  background: rgba(120, 180, 255, 0.45);
+  animation: rippleOut .6s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rippleOut {
+  from { transform: scale(0); opacity: 1; }
+  to   { transform: scale(4); opacity: 0; }
+}
+```
+
+**注意**：变体 B 的初始不透明度是 `1`，意味着波纹起始时是**实心**的，
+靠快速扩散才变"轻"。这比基准方案的起始 `12%` 更"实"，适合暗色背景上的浅蓝。
+
+**取舍**：
+- 基准方案更通用（颜色自适应，彩色按钮上不会突兀）
+- 变体 B 观感更"水"，但**固定蓝色在非蓝色按钮上会违和**，慎用
+
 ## 细节与反例
 波纹颜色必须跟随该元素文字色，固定灰会在彩色按钮上突兀。
 
