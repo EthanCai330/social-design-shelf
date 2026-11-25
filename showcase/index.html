@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 
@@ -599,10 +599,10 @@ body{
       <h1>设计收藏库<span class="title-en">Design Collection</span></h1>
     </div>
     <div class="hero-aside">
-      <p class="lead">39 个真实可交互的移动端组件标本。鼠标组件可直接悬停与点击，手势组件请按住拖动体验物理阻尼。所有参数均取自 <code>components/</code> 条目，并由 <code>validate.py</code> 校验通过。</p>
+      <p class="lead">45 个真实可交互的移动端组件标本。鼠标组件可直接悬停与点击，手势组件请按住拖动体验物理阻尼。所有参数均取自 <code>components/</code> 条目，并由 <code>validate.py</code> 校验通过。</p>
       <div class="spec-strip">
         <div class="spec-item">
-          <span class="spec-val">39</span>
+          <span class="spec-val">45</span>
           <span class="spec-key">Components</span>
         </div>
         <div class="spec-item">
@@ -1979,6 +1979,8 @@ const CATEGORY = {
   41:'surface', 42:'surface', 43:'surface', 44:'surface',
   45:'surface', 46:'surface', 47:'surface', 48:'surface',
   49:'motion', 50:'motion', 51:'motion',
+  52:'motion', 53:'motion', 54:'motion',
+  55:'motion', 56:'motion', 57:'motion',
 };
 const CAT_LABEL = {
   motion:'动效交互', depth:'玻璃与深度', expand:'展开与收纳',
@@ -4106,6 +4108,334 @@ def(51,'黏性融合 Gooey','液态 / SVG 滤镜','',function(stage){
 });
 
 buildFilterBar();
+
+/* ===== 以下为补充组件（反馈态 / 文字动效 / 指针交互）===== */
+/* =========================================================
+   52. 成功勾选 Success Check
+   ========================================================= */
+def(52,'成功勾选','静谧极简','160px',function(stage){
+  stage.style.cssText+='display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;';
+  stage.innerHTML=`
+    <style>
+      .sc-wrap{display:inline-block;transform-origin:center;opacity:0;will-change:transform,opacity,filter}
+      .sc-wrap svg{display:block;overflow:visible}
+      .sc-wrap svg path{stroke-dasharray:24;stroke-dashoffset:24}
+      .sc-wrap[data-state="in"]{
+        animation:
+          sc-fade 500ms cubic-bezier(.22,1,.36,1) forwards,
+          sc-rotate 500ms cubic-bezier(.22,1,.36,1) forwards,
+          sc-blur 500ms cubic-bezier(.22,1,.36,1) forwards,
+          sc-bob 500ms cubic-bezier(.34,1.35,.64,1) forwards;
+      }
+      .sc-wrap[data-state="in"] svg path{
+        animation: sc-draw 500ms cubic-bezier(.22,1,.36,1) 80ms forwards;
+      }
+      @keyframes sc-fade{from{opacity:0}to{opacity:1}}
+      @keyframes sc-rotate{from{transform:rotate(80deg)}to{transform:rotate(0deg)}}
+      @keyframes sc-blur{from{filter:blur(10px)}to{filter:blur(0)}}
+      @keyframes sc-bob{from{translate:0 40px}to{translate:0 0}}
+      @keyframes sc-draw{to{stroke-dashoffset:0}}
+      @media (prefers-reduced-motion: reduce){
+        .sc-wrap{animation:none!important;opacity:1}
+        .sc-wrap svg path{animation:none!important;stroke-dashoffset:0!important}
+      }
+      .sc-btn{border:0;font:inherit;font-size:11px;padding:7px 16px;border-radius:999px;
+        background:#F1EFEB;color:#6E6A64;cursor:pointer}
+    </style>
+    <div class="sc-wrap" data-state="out" aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="21" stroke="#34C759" stroke-width="2.5" opacity=".28"/>
+        <path d="M15 24.5L21 30.5L33.5 18" stroke="#34C759" stroke-width="3.5"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <button class="sc-btn">重播</button>`;
+  const wrap=$('.sc-wrap',stage);
+  const btn=$('.sc-btn',stage);
+  function play(){
+    wrap.setAttribute('data-state','out');
+    void wrap.offsetWidth;              // 强制回流，让 keyframes 重头开始
+    wrap.setAttribute('data-state','in');
+  }
+  btn.addEventListener('click',play);
+  play();
+});
+
+/* =========================================================
+   53. 错误抖动 Error Shake
+   ========================================================= */
+def(53,'错误抖动','静谧极简','160px',function(stage){
+  stage.style.cssText+='display:flex;flex-direction:column;align-items:center;justify-content:center;';
+  stage.innerHTML=`
+    <style>
+      .es-wrap{width:230px}
+      .es-input{
+        display:flex;align-items:center;gap:8px;height:42px;padding:0 14px;border-radius:11px;
+        background:#fff;border:1.5px solid rgba(0,0,0,.09);box-sizing:border-box;
+        transition:border-color 150ms ease-out;will-change:transform;
+      }
+      .es-input.is-error{transition:border-color 280ms ease-out;border-color:#FF3B30}
+      .es-input.is-shaking{animation:es-shake 280ms linear}
+      .es-text{font-size:12.5px;color:#3A3733;flex:1}
+      .es-ph{font-size:12.5px;color:#B5AEA6;flex:1}
+      .es-msg{
+        font-size:10.5px;color:#FF3B30;margin:7px 0 0 3px;
+        opacity:0;visibility:hidden;
+        transition:opacity 280ms ease-out,visibility 0s linear 280ms;
+      }
+      .es-wrap.is-error .es-msg{
+        opacity:1;visibility:visible;
+        transition:opacity 280ms ease-out,visibility 0s linear 0s;
+      }
+      @keyframes es-shake{
+        0%{transform:translateX(0);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+        28.57%{transform:translateX(6px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+        57.14%{transform:translateX(-6px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+        78.57%{transform:translateX(4px);animation-timing-function:cubic-bezier(.22,1,.36,1)}
+        100%{transform:translateX(0)}
+      }
+      @media (prefers-reduced-motion: reduce){
+        .es-input.is-shaking{animation:none!important;transform:none!important}
+      }
+    </style>
+    <div class="es-wrap">
+      <div class="es-input"><span class="es-ph">请输入邮箱</span></div>
+      <p class="es-msg">请输入有效的邮箱地址</p>
+    </div>`;
+  const wrap=$('.es-wrap',stage);
+  const inp=$('.es-input',stage);
+
+  function play(){
+    wrap.classList.add('is-error');
+    inp.classList.add('is-error');
+    inp.classList.remove('is-shaking');
+    void inp.offsetWidth;                // 强制回流才能重播
+    inp.classList.add('is-shaking');
+    setTimeout(()=>inp.classList.remove('is-shaking'), 300);
+    clearTimeout(wrap._t);
+    wrap._t=setTimeout(()=>{             // 3s 后自动复位
+      wrap.classList.remove('is-error');
+      inp.classList.remove('is-error');
+    }, 280+3000);
+    clearTimeout(wrap._loop);
+    wrap._loop=setTimeout(play, 4200);   // demo 里自动循环
+  }
+  play();
+});
+
+/* =========================================================
+   54. 文字流光 Text Shimmer
+   ========================================================= */
+def(54,'文字流光','暗黑奢华','160px',function(stage){
+  stage.style.cssText+='display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#0D0D11;';
+  stage.innerHTML=`
+    <style>
+      .ts-wrap{text-align:center}
+      .ts-title{
+        font-size:26px;font-weight:700;letter-spacing:-.01em;
+        background:linear-gradient(90deg,#94A3B8 0%,#94A3B8 40%,#F8FAFC 50%,#94A3B8 60%,#94A3B8 100%);
+        background-size:200% 100%;
+        -webkit-background-clip:text;background-clip:text;
+        -webkit-text-fill-color:transparent;color:transparent;
+        animation:ts-slide 3s ease-in-out infinite;
+        margin:0;
+      }
+      .ts-sub{
+        font-size:10.5px;color:#5A5F68;margin-top:9px;
+      }
+      @keyframes ts-slide{
+        0%{background-position:100% center}
+        100%{background-position:-100% center}
+      }
+      @media (prefers-reduced-motion: reduce){
+        .ts-title{animation:none;background:#E2E8F0;-webkit-text-fill-color:#E2E8F0}
+      }
+      @supports not (background-clip: text){
+        .ts-title{color:#E2E8F0;background:none}
+      }
+    </style>
+    <div class="ts-wrap">
+      <p class="ts-title">AI 正在思考</p>
+      <div class="ts-sub">3s ease-in-out · background-clip: text</div>
+    </div>`;
+});
+
+/* =========================================================
+   55. 无限滚动 Infinite Marquee
+   ========================================================= */
+def(55,'无限滚动','瑞士排版','160px',function(stage){
+  stage.style.cssText+='display:flex;flex-direction:column;justify-content:center;gap:12px;overflow:hidden;';
+  stage.innerHTML=`
+    <style>
+      .mq-wrap{display:flex;flex-direction:column;gap:11px}
+      .mq{
+        overflow:hidden;display:flex;
+        mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+        -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+        padding:2px 0;
+      }
+      .mq-track{display:flex;gap:var(--gap);animation:mq-move var(--dur) linear infinite}
+      .mq-group{display:flex;gap:var(--gap);flex-shrink:0;align-items:center}
+      .mq:hover .mq-track{animation-play-state:paused}
+      .mq-item{
+        font-size:11px;padding:6px 13px;border-radius:999px;white-space:nowrap;
+        background:#fff;color:#57534D;box-shadow:0 0 0 1px rgba(0,0,0,.05);
+      }
+      .mq--rev .mq-track{animation-direction:reverse}
+      @keyframes mq-move{
+        from{transform:translateX(0)}
+        to{transform:translateX(calc(-100% - var(--gap)))}
+      }
+      @media (prefers-reduced-motion: reduce){
+        .mq-track{animation:none!important}
+      }
+    </style>
+    <div class="mq-wrap"></div>`;
+  const wrap=$('.mq-wrap',stage);
+  const rows=[
+    {items:['设计系统','动效规范','组件库','参数化','无障碍'],rev:false,dur:'18s'},
+    {items:['Spring','Cubic Bezier','Canvas','SVG Filter','WebGL'],rev:true,dur:'24s'},
+  ];
+  rows.forEach(cfg=>{
+    const mq=document.createElement('div');
+    mq.className='mq'+(cfg.rev?' mq--rev':'');
+    mq.style.setProperty('--gap','9px');
+    mq.style.setProperty('--dur',cfg.dur);
+    const mk=()=>'<div class="mq-group">'+cfg.items.map(t=>`<span class="mq-item">${t}</span>`).join('')+'</div>';
+    mq.innerHTML=`<div class="mq-track">${mk()}${mk()}</div>`;
+    // 第二份对屏幕阅读器隐藏
+    mq.querySelectorAll('.mq-group')[1].setAttribute('aria-hidden','true');
+    wrap.append(mq);
+  });
+});
+
+/* =========================================================
+   56. 点击火花 Click Spark
+   ========================================================= */
+def(56,'点击火花','暗黑奢华','160px',function(stage){
+  stage.style.cssText+='display:flex;align-items:center;justify-content:center;background:#0D0D11;position:relative;overflow:hidden;';
+  stage.innerHTML=`
+    <style>
+      .cs-btn{
+        position:relative;border:0;font:inherit;font-size:13px;font-weight:500;
+        padding:13px 30px;border-radius:11px;cursor:pointer;
+        background:#1C1D24;color:#EDEDED;box-shadow:inset 0 0 0 1px rgba(255,255,255,.09);
+        overflow:visible;
+      }
+      .cs-spark{
+        position:absolute;width:2.5px;height:2.5px;border-radius:50%;
+        background:#8FD6FF;pointer-events:none;
+        box-shadow:none;
+      }
+      .cs-hint{position:absolute;bottom:14px;font-size:10px;color:#3E4148}
+      @media (prefers-reduced-motion: reduce){ .cs-spark{display:none} }
+    </style>
+    <button class="cs-btn">点我</button>
+    <div class="cs-hint">8 方向 · 400ms ease-out</div>`;
+  const btn=$('.cs-btn',stage);
+
+  btn.addEventListener('pointerdown',()=>{
+    const r=btn.getBoundingClientRect();
+    const sr=stage.getBoundingClientRect();
+    const cx=r.left-sr.left+r.width/2;
+    const cy=r.top-sr.top+r.height/2;
+    const R=15, COUNT=8;
+
+    for(let i=0;i<COUNT;i++){
+      const ang=(i/COUNT)*Math.PI*2 - Math.PI/2;
+      const sp=document.createElement('span');
+      sp.className='cs-spark';
+      // 生成点：按钮中心
+      sp.style.left=(cx-1.25)+'px';
+      sp.style.top=(cy-1.25)+'px';
+      stage.append(sp);
+      const tx=Math.cos(ang)*R, ty=Math.sin(ang)*R;
+      sp.animate([
+        {transform:'translate(0,0) scale(1)',opacity:1},
+        {transform:`translate(${tx}px,${ty}px) scale(0)`,opacity:0}
+      ],{duration:400,easing:'cubic-bezier(0.22,1,0.36,1)'})
+        .onfinish=()=>sp.remove();
+    }
+  });
+});
+
+/* =========================================================
+   57. 图片拖尾 Image Trail
+   ========================================================= */
+def(57,'图片拖尾','暗黑奢华','160px',function(stage){
+  stage.style.cssText+='position:relative;overflow:hidden;background:#0A0B0F;cursor:crosshair;';
+  stage.innerHTML=`
+    <style>
+      .it-card{
+        position:absolute;border-radius:15px;overflow:hidden;
+        width:96px;height:87px;                     /* 96 / 1.1 ≈ 87，保持宽高比 */
+        pointer-events:none;
+        background-size:cover;background-position:center;
+        box-shadow:0 8px 26px rgba(0,0,0,.5);
+      }
+      .it-hint{
+        position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+        font-size:11px;color:rgba(255,255,255,.26);letter-spacing:.06em;
+        text-align:center;line-height:1.9;pointer-events:none;
+      }
+    </style>
+    <div class="it-hint">在卡片内移动鼠标<br><span style="font-size:9.5px;opacity:.7">阈值 80px 触发</span></div>`;
+
+  // 用 CSS 渐变当"图片"，避免外部资源
+  const GRADS=[
+    'linear-gradient(135deg,#7B3FE4,#3F5AE4)',
+    'linear-gradient(135deg,#00C2FF,#00FFC8)',
+    'linear-gradient(135deg,#FF4FA8,#7B3FE4)',
+    'linear-gradient(135deg,#FFD79A,#FF4FA8)',
+    'linear-gradient(135deg,#3FE4A0,#00C2FF)',
+    'linear-gradient(135deg,#9FE8FF,#3F5AE4)',
+  ];
+
+  const THRESHOLD=80, MAX_ALIVE=8;
+  let lastX=null,lastY=null,gi=0;
+  const alive=[];
+
+  stage.addEventListener('pointermove',e=>{
+    const sr=stage.getBoundingClientRect();
+    const x=e.clientX-sr.left, y=e.clientY-sr.top;
+    if(lastX===null){ lastX=x; lastY=y; return; }
+    const dx=x-lastX, dy=y-lastY;
+    if(Math.hypot(dx,dy)<THRESHOLD) return;       // 未达阈值不生成
+    lastX=x; lastY=y;
+
+    const c=document.createElement('div');
+    c.className='it-card';
+    c.style.background=GRADS[gi++%GRADS.length];
+    c.style.left=(x-48)+'px';
+    c.style.top=(y-43)+'px';
+    c.style.zIndex=String(10+alive.length);
+    stage.append(c);
+    alive.push(c);
+
+    // 上限控制：超过就移除最旧的
+    while(alive.length>MAX_ALIVE){
+      const old=alive.shift();
+      old.remove();
+    }
+
+    c.animate([
+      {transform:'scale(.6)',opacity:0},
+      {transform:'scale(1)',opacity:1}
+    ],{duration:300,easing:'cubic-bezier(0.22,1,0.36,1)'});
+
+    setTimeout(()=>{
+      if(!c.isConnected) return;
+      const a=c.animate([{opacity:1},{opacity:0}],{duration:400,easing:'ease-out'});
+      a.onfinish=()=>{
+        c.remove();
+        const i=alive.indexOf(c);
+        if(i>=0) alive.splice(i,1);
+      };
+    },1000);
+  });
+  stage.addEventListener('pointerleave',()=>{ lastX=null; lastY=null; });
+});
+
 render();
 
 </script>
