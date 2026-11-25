@@ -172,6 +172,21 @@ def main():
             if not (ROOT / l).exists():
                 err('INDEX.md', f'死链 {l}')
 
+        # README 数字一致性校验：README 里的条目数必须与 INDEX 一致
+        readme = ROOT / 'README.md'
+        if readme.exists():
+            rt = readme.read_text(encoding='utf-8')
+            real_total = len(files)
+            m = re.search(r'\*\*(\d+)\s*个条目\*\*', rt)
+            if m:
+                claimed = int(m.group(1))
+                if claimed != real_total:
+                    err('README.md', f'条目数写的是 {claimed}，实际 {real_total}')
+            # 检查是否残留旧分类名
+            for old_cat in ('`motion`', '`depth`', '`expand`', '`gesture`'):
+                if old_cat in rt:
+                    err('README.md', f'残留已废弃的分类名 {old_cat}')
+
     if '--json' in sys.argv:
         print(json.dumps({'errors': errors, 'warnings': warnings}, ensure_ascii=False, indent=2))
     else:
