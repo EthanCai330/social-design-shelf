@@ -5,11 +5,11 @@
 >
 > 分类（category）决定分组，视觉风格（styles）只作标签——两者正交。
 
-**统计**：41 个条目
+**统计**：47 个条目
 
-**按输入方式**：`both` 14 · `none` 13 · `pointer` 7 · `touch` 7
+**按输入方式**：`both` 16 · `none` 16 · `pointer` 8 · `touch` 7
 
-**按视口**：`both` 19 · `mobile` 17 · `desktop` 5
+**按视口**：`both` 24 · `mobile` 17 · `desktop` 6
 
 ---
 
@@ -23,6 +23,8 @@
   <sub>`quiet` · 输入 `both`</sub>
 - [可展开工具栏 Expandable Toolbar](components/expandable-toolbar.md) — 图标必须"依次"滑出，一起出现就没有节奏感  
   <sub>`glass` · 输入 `both`</sub>
+- [图片拖尾 Image Trail](components/image-trail.md) — 不要在内容密集区用  
+  <sub>`noir` · 输入 `pointer`</sub>
 - [墨晕触摸反馈 Ripple / Ink Touch](components/ripple-ink-touch.md) — 波纹颜色必须跟随该元素文字色，固定灰会在彩色按钮上突兀  
   <sub>`oriental` `quiet` · 输入 `touch`</sub>
 - [弹力开关 Elastic Toggle](components/elastic-toggle.md) — 按压拉伸最容易做出"硅胶感"，很多 App 都缺这一步  
@@ -31,14 +33,24 @@
   <sub>`quiet` · 输入 `both`</sub>
 - [悬浮导航 Floating Navigation](components/floating-navigation.md) — 切换时导航条要有一个"高度瞬间缩 4px 再回弹"的挤压感，这是它区别于普通 tab 的地方  
   <sub>`glass` · 输入 `both`</sub>
+- [成功勾选 Success Check](components/success-check.md) — 描边延迟不要超过 150ms  
+  <sub>`quiet` · 输入 `none`</sub>
 - [放大 Dock Magnification Dock](components/magnification-dock.md) — 放大必须由光标位置连续驱动，不能用"进入时触发一次动画"  
   <sub>`glass` · 输入 `pointer`</sub>
+- [文字流光 Text Shimmer](components/text-shimmer.md) — 不要用 `linear`  
+  <sub>`noir` `fluid` · 输入 `none`</sub>
+- [无限滚动 Infinite Marquee](components/infinite-marquee.md) — 不要用 `<marquee>` 标签  
+  <sub>`swiss` · 输入 `none`</sub>
+- [点击火花 Click Spark](components/click-spark.md) — 时长不要超过 500ms  
+  <sub>`noir` · 输入 `both`</sub>
 - [磁吸按钮 Magnetic Button](components/magnetic-button.md) — 光标离开用 spring，不要线性归位  
   <sub>`noir` `quiet` · 输入 `pointer`</sub>
 - [轮换文字 Rotating Text](components/rotating-text.md) — 必须 overflow hidden 裁切，否则文字会从上方"飞过去"穿帮  
   <sub>`swiss` `oriental` · 输入 `none`</sub>
 - [错峰入场 Staggered List Reveal](components/staggered-list-reveal.md) — 错峰超过 6 张用户就会等  
   <sub>`quiet` · 输入 `none`</sub>
+- [错误抖动 Error Shake](components/error-shake.md) — 幅度不要超过 8px  
+  <sub>`quiet` · 输入 `both`</sub>
 - [黏性融合 Gooey Effect](components/gooey-effect.md) — `feColorMatrix` 的阈值是灵魂  
   <sub>`quiet` `fluid` · 输入 `both`</sub>
 
